@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="EduGenie - Google Gemini Powered Learning Assistant"
+    >
+
+    <title>
+        EduGenie - AI Learning Assistant
+    </title>
+
+
+    <!-- CSS -->
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- ==================================================
+         NAVBAR
+    =================================================== -->
+
+    <nav class="navbar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                🎓
+            </div>
+
+            <div>
+
+                <h2>
+                    EduGenie
+                </h2>
+
+                <span>
+                    AI Learning Assistant
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="status">
+
+            <span class="status-dot"></span>
+
+            AI Online
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- ==================================================
+         MAIN
+    =================================================== -->
+
+    <main class="container">
+
+
+        <!-- HERO -->
+
+        <section class="hero">
+
+            <div class="hero-badge">
+                ✨ Powered by Google Gemini
+            </div>
+
+            <h1>
+                Learn Smarter.
+                <span>
+                    Study Better.
+                </span>
+            </h1>
+
+            <p>
+                Your personal AI learning assistant for
+                questions, summaries, quizzes and study plans.
+            </p>
+
+        </section>
+
+
+
+        <!-- ==================================================
+             LEARNING SETTINGS
+        =================================================== -->
+
+        <section class="settings-card">
+
+            <div class="section-title">
+
+                <span class="title-icon">
+                    ⚙️
+                </span>
+
+                <div>
+
+                    <h3>
+                        Learning Settings
+                    </h3>
+
+                    <p>
+                        Customize your learning experience
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="settings-grid">
+
+
+                <!-- SUBJECT -->
+
+                <div class="input-group">
+
+                    <label for="subject">
+                        Subject
+                    </label>
+
+                    <select id="subject">
+
+                        <option value="General">
+                            General
+                        </option>
+
+                        <option value="Artificial Intelligence">
+                            Artificial Intelligence
+                        </option>
+
+                        <option value="Machine Learning">
+                            Machine Learning
+                        </option>
+
+                        <option value="Python Programming">
+                            Python Programming
+                        </option>
+
+                        <option value="Java Programming">
+                            Java Programming
+                        </option>
+
+                        <option value="Natural Language Processing">
+                            Natural Language Processing
+                        </option>
+
+                        <option value="Data Structures">
+                            Data Structures
+                        </option>
+
+                        <option value="Database Management Systems">
+                            Database Management Systems
+                        </option>
+
+                        <option value="Computer Networks">
+                            Computer Networks
+                        </option>
+
+                        <option value="Operating Systems">
+                            Operating Systems
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- LEVEL -->
+
+                <div class="input-group">
+
+                    <label for="level">
+                        Student Level
+                    </label>
+
+                    <select id="level">
+
+                        <option value="School">
+                            School
+                        </option>
+
+                        <option
+                            value="College"
+                            selected
+                        >
+                            College
+                        </option>
+
+                        <option value="University">
+                            University
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- MODE -->
+
+                <div class="input-group">
+
+                    <label for="mode">
+                        Learning Mode
+                    </label>
+
+                    <select id="mode">
+
+                        <option value="Learn">
+                            📖 Learn
+                        </option>
+
+                        <option value="Simple">
+                            🌱 Simple
+                        </option>
+
+                        <option value="Detailed">
+                            🔍 Detailed
+                        </option>
+
+                        <option value="Exam">
+                            📝 Exam
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==================================================
+             ASK EDUGENIE
+        =================================================== -->
+
+        <section class="main-card">
+
+
+            <div class="section-title">
+
+                <div class="large-icon purple">
+                    🤖
+                </div>
+
+                <div>
+
+                    <h2>
+                        Ask EduGenie
+                    </h2>
+
+                    <p>
+                        Ask any academic question and learn
+                        with AI.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <textarea
+                id="question"
+                class="large-textarea"
+                placeholder="Example: Explain machine learning in simple terms with an example..."
+            ></textarea>
+
+
+            <div class="action-row">
+
+                <span class="shortcut">
+                    Ctrl + Enter to ask
+                </span>
+
+                <button
+                    id="askButton"
+                    class="primary-button"
+                    onclick="askQuestion()"
+                >
+
+                    <span>
+                        ✨
+                    </span>
+
+                    Ask EduGenie
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==================================================
+             AI ANSWER
+        =================================================== -->
+
+        <section
+            id="answerSection"
+            class="result-card hidden"
+        >
+
+            <div class="result-header">
+
+                <div class="result-title">
+
+                    <div class="large-icon green">
+                        💡
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            EduGenie's Answer
+                        </h2>
+
+                        <p>
+                            AI-generated learning response
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <button
+                    class="copy-button"
+                    onclick="copyResult('answer')"
+                >
+                    📋 Copy
+                </button>
+
+            </div>
+
+
+            <div
+                id="answer"
+                class="result-content"
+            ></div>
+
+        </section>
+
+
+
+        <!-- ==================================================
+             TWO COLUMN TOOLS
+        =================================================== -->
+
+        <div class="tools-grid">
+
+
+            <!-- SUMMARIZER -->
+
+            <section class="tool-card">
+
+                <div class="tool-icon blue">
+                    📚
+                </div>
+
+                <h2>
+                    Study Summarizer
+                </h2>
+
+                <p>
+                    Convert long study material into
+                    simple revision notes.
+                </p>
+
+                <textarea
+                    id="summaryText"
+                    placeholder="Paste your study material here..."
+                ></textarea>
+
+                <button
+                    class="secondary-button"
+                    onclick="summarizeText()"
+                >
+                    📝 Summarize Material
+                </button>
+
+            </section>
+
+
+
+            <!-- QUIZ -->
+
+            <section class="tool-card">
+
+                <div class="tool-icon orange">
+                    🧠
+                </div>
+
+                <h2>
+                    AI Quiz Generator
+                </h2>
+
+                <p>
+                    Generate practice questions from
+                    any topic.
+                </p>
+
+                <input
+                    type="text"
+                    id="quizTopic"
+                    placeholder="Enter quiz topic..."
+                >
+
+
+                <select id="quizNumber">
+
+                    <option value="5">
+                        5 Questions
+                    </option>
+
+                    <option value="10">
+                        10 Questions
+                    </option>
+
+                    <option value="15">
+                        15 Questions
+                    </option>
+
+                    <option value="20">
+                        20 Questions
+                    </option>
+
+                </select>
+
+
+                <button
+                    class="secondary-button"
+                    onclick="generateQuiz()"
+                >
+                    🎯 Generate Quiz
+                </button>
+
+            </section>
+
+        </div>
+
+
+
+        <!-- ==================================================
+             SUMMARY RESULT
+        =================================================== -->
+
+        <section
+            id="summarySection"
+            class="result-card hidden"
+        >
+
+            <div class="result-header">
+
+                <div class="result-title">
+
+                    <div class="large-icon blue">
+                        📚
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Study Summary
+                        </h2>
+
+                        <p>
+                            AI-generated revision material
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <button
+                    class="copy-button"
+                    onclick="copyResult('summaryResult')"
+                >
+                    📋 Copy
+                </button>
+
+            </div>
+
+
+            <div
+                id="summaryResult"
+                class="result-content"
+            ></div>
+
+        </section>
+
+
+
+        <!-- ==================================================
+             QUIZ RESULT
+        =================================================== -->
+
+        <section
+            id="quizSection"
+            class="result-card hidden"
+        >
+
+            <div class="result-header">
+
+                <div class="result-title">
+
+                    <div class="large-icon orange">
+                        🧠
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Generated Quiz
+                        </h2>
+
+                        <p>
+                            Choose an answer to see instant feedback
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <button
+                    class="copy-button"
+                    onclick="copyResult('quizResult')"
+                >
+                    📋 Copy
+                </button>
+
+            </div>
+
+
+            <div
+                id="quizResult"
+                class="result-content"
+            ></div>
+
+        </section>
+
+
+
+        <!-- ==================================================
+             STUDY PLAN
+        =================================================== -->
+
+        <section class="main-card">
+
+            <div class="section-title">
+
+                <div class="large-icon pink">
+                    📅
+                </div>
+
+                <div>
+
+                    <h2>
+                        AI Study Planner
+                    </h2>
+
+                    <p>
+                        Create a personalized study schedule.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="planner-grid">
+
+
+                <div class="input-group">
+
+                    <label>
+                        Subject
+                    </label>
+
+                    <input
+                        id="planSubject"
+                        type="text"
+                        placeholder="Example: Machine Learning"
+                    >
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>
+                        Number of Days
+                    </label>
+
+                    <select id="planDays">
+
+                        <option value="3">
+                            3 Days
+                        </option>
+
+                        <option value="5">
+                            5 Days
+                        </option>
+
+                        <option
+                            value="7"
+                            selected
+                        >
+                            7 Days
+                        </option>
+
+                        <option value="14">
+                            14 Days
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>
+                        Hours Per Day
+                    </label>
+
+                    <select id="planHours">
+
+                        <option value="1">
+                            1 Hour
+                        </option>
+
+                        <option
+                            value="2"
+                            selected
+                        >
+                            2 Hours
+                        </option>
+
+                        <option value="3">
+                            3 Hours
+                        </option>
+
+                        <option value="4">
+                            4 Hours
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="primary-button"
+                onclick="generateStudyPlan()"
+            >
+                📅 Create Study Plan
+            </button>
+
+        </section>
+
+
+
+        <!-- STUDY PLAN RESULT -->
+
+        <section
+            id="planSection"
+            class="result-card hidden"
+        >
+
+            <div class="result-header">
+
+                <div class="result-title">
+
+                    <div class="large-icon pink">
+                        📅
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Your Study Plan
+                        </h2>
+
+                        <p>
+                            Personalized AI study schedule
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <button
+                    class="copy-button"
+                    onclick="copyResult('planResult')"
+                >
+                    📋 Copy
+                </button>
+
+            </div>
+
+
+            <div
+                id="planResult"
+                class="result-content"
+            ></div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- ==================================================
+         FOOTER
+    =================================================== -->
+
+    <footer>
+
+        <div class="footer-logo">
+            🎓 EduGenie
+        </div>
+
+        <p>
+            Google Gemini Powered Learning Assistant
+        </p>
+
+        <small>
+            Built for smarter and easier learning.
+        </small>
+
+    </footer>
+
+
+
+    <!-- JAVASCRIPT -->
+
+    <script
+        src="{{ url_for('static', filename='css/js/app.js') }}"
+    ></script>
+
+
+</body>
+
+</html>
